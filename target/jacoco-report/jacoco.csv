@@ -1,9 +1,11 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-zadanieOdWaldemara,cantor.service,Service,0,67,0,2,0,14,0,3,0,2
+zadanieOdWaldemara,cantor.service,Service,0,40,0,2,0,9,0,3,0,2
 zadanieOdWaldemara,figures.service,Service.new TypeReference() {...},0,6,0,0,0,1,0,1,0,1
 zadanieOdWaldemara,figures.service,Service,0,82,0,0,0,17,0,8,0,8
 zadanieOdWaldemara,figures.figure,Shape,0,11,0,0,0,4,0,2,0,2
 zadanieOdWaldemara,cantor.exception,BadCurrency,0,4,0,0,0,2,0,1,0,1
+zadanieOdWaldemara,cantor.reader,Reader,0,48,0,0,0,10,0,2,0,2
 zadanieOdWaldemara,figures.circle,Circle,0,13,0,0,0,2,0,2,0,2
 zadanieOdWaldemara,figures.square,Square,0,11,0,0,0,2,0,2,0,2
 zadanieOdWaldemara,figures.rectangle,Rectangle,0,16,0,0,0,2,0,2,0,2
+zadanieOdWaldemara,cantor,Main,20,0,0,0,5,0,2,0,2,0

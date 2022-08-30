@@ -21,7 +21,7 @@ public class Service {
     }
 
 
-    public <T> Shape getChosenFigureWithTheBiggestPerimeter(List<Shape> figures, Class<T> type) {
+    public Shape getChosenFigureWithTheBiggestPerimeter(List<Shape> figures, Class type) {
         return Optional.ofNullable(figures)
                 .orElse(Collections.emptyList())
                 .stream()
@@ -32,14 +32,11 @@ public class Service {
 
     public void writeFiguresToJson(List<Shape> figureList, String path) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-//        Shapes serializedShapes = new Shapes(figureList);
         objectMapper.writeValue(new File(path + "Figures.json"), figureList);
     }
 
     public List<Shape> readFiguresFromJson(String path) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        //       Shapes deserializedShapes = objectMapper.readValue(new File(path), Shapes.class);
-        //       return deserializedShapes.getShapes();
         return objectMapper.readValue(new File(path), new TypeReference<List<Shape>>() {
         });
     }

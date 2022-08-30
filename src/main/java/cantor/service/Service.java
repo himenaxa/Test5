@@ -1,29 +1,26 @@
 package cantor.service;
 
+
 import cantor.exception.BadCurrency;
+import cantor.reader.Reader;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
 public class Service {
+    private Reader reader;
 
-    public Double exchange(String currencyFrom, String currencyTo, double amount) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://api.apilayer.com/exchangerates_data/";
-        Request request = new Request.Builder()
-                .url(url + "convert?to=" + currencyTo + "&from=" + currencyFrom + "&amount=" + amount)
-                .addHeader("apikey", "BnW7ENBiBLBknHJSmAIOb4xax9pdohFL")
-                .get()
-                .build();
-        Response response = client.newCall(request).execute();
-        ObjectMapper om = new ObjectMapper();
-        JsonNode read = om.readTree(response.body().string());
+    public Service(Reader reader) {
+        this.reader = reader;
+    }
+
+    public double exchange(String currencyFrom, String currencyTo, double amount) throws IOException {
+        String response = reader.readApi(currencyTo, currencyFrom, amount);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode read = objectMapper.readTree(response);
         if (read.get("error") != null) {
-            throw new BadCurrency("You have entered bad name of currency");
+            throw new BadCurrency(read.get("error").get("message").asText());
         }
         return read.get("result").asDouble();
     }

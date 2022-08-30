@@ -1,8 +1,12 @@
 package cantor.service;
 
 import cantor.exception.BadCurrency;
+import cantor.reader.Reader;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
 
@@ -12,23 +16,29 @@ public class ServiceTest {
 
     private Service service;
 
+    @Mock
+    private Reader readerMock;
+
     @Before
     public void init() {
-        service = new Service();
+        MockitoAnnotations.openMocks(this);
+        service = new Service(readerMock);
     }
 
     @Test
-    public void shouldNotThrowNullAsAResult() throws IOException {
-        assertNotNull(service.exchange("USD", "PLN", 1.0));
+    public void shouldReturnCorrectlyAmount() throws IOException {
+        String stringFromApi = "{\"result\": 4.73006}";
+        Mockito.when(readerMock.readApi(Mockito.anyString(),Mockito.anyString(),Mockito.anyDouble())).thenReturn(stringFromApi);
+        double result = service.exchange(Mockito.anyString(),Mockito.anyString(),Mockito.anyDouble());
+        assertEquals(4.73006,result,0.00001);
     }
 
 
     @Test(expected = BadCurrency.class)
-    public void shouldThrowBadCurrencyExceptionWhenNameOfCurrencyFromNameIsWrong() throws IOException {
-        service.exchange("USDD", "PLN", 10);
+    public void shouldThrowBadCurrencyExceptionWhenNameOfCurrencyIsNotCorrectly() throws IOException {
+        String stringFrommApi = "{\"error\": {\"code\": \"invalid_from_currency\",\"message\": \"(....)\"}}";
+        Mockito.when(readerMock.readApi(Mockito.anyString(),Mockito.anyString(),Mockito.anyDouble())).thenReturn(stringFrommApi);
+        service.exchange(Mockito.anyString(),Mockito.anyString(),Mockito.anyDouble());
     }
-    @Test(expected = BadCurrency.class)
-    public void shouldThrowBadCurrencyExceptionWhenNameOfCurrencyToNameIsWrong() throws IOException {
-        service.exchange("USDD", "PLNN", 10);
-    }
+
 }

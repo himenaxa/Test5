@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="cantor.service.ServiceTest" time="4.779" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="cantor.service.ServiceTest" time="0.038" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="18.0.2+9-61"/>
@@ -61,7 +61,6 @@
     <property name="sun.stdout.encoding" value="cp852"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="cantor.service.ServiceTest" name="shouldThrowBadCurrencyExceptionWhenNameOfCurrencyFromNameIsWrong" time="4.231"/>
-  <testcase classname="cantor.service.ServiceTest" name="shouldThrowBadCurrencyExceptionWhenNameOfCurrencyToNameIsWrong" time="0.217"/>
-  <testcase classname="cantor.service.ServiceTest" name="shouldNotThrowNullAsAResult" time="0.331"/>
+  <testcase classname="cantor.service.ServiceTest" name="shouldThrowBadCurrencyExceptionWhenNameOfCurrencyFromNameIsWrong" time="0.038"/>
+  <testcase classname="cantor.service.ServiceTest" name="shouldReturnCorrectlyAmount" time="0"/>
 </testsuite>

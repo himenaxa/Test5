@@ -1,6 +1,7 @@
+figures\circle\CircleTest.class
 cantor\service\ServiceTest.class
 figures\service\ServiceTest$1.class
 figures\service\ServiceTest.class
 figures\square\SquareTest.class
-figures\circle\CircleTest.class
+cantor\reader\ReaderTest.class
 figures\rectangle\RectangleTest.class
