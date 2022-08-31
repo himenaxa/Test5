@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Service {
@@ -16,6 +17,7 @@ public class Service {
         return Optional.ofNullable(figures)
                 .orElse(Collections.emptyList())
                 .stream()
+                .filter(Objects::nonNull)
                 .max(Comparator.comparing(Shape::getArea))
                 .orElseThrow(() -> new IllegalArgumentException("error"));
     }
@@ -25,6 +27,7 @@ public class Service {
         return Optional.ofNullable(figures)
                 .orElse(Collections.emptyList())
                 .stream()
+                .filter(Objects::nonNull)
                 .filter(f -> f.getClass().equals(type))
                 .max(Comparator.comparing(Shape::getPerimeter))
                 .orElseThrow(() -> new IllegalArgumentException("error"));
